@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
@@ -19,8 +20,21 @@ namespace WebApi
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             config
-                .EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API"))
-                .EnableSwaggerUi();
+                .EnableSwagger(
+                c => {
+                    c.SingleApiVersion("v1", "A title for your API");
+                    c.IncludeXmlComments(Path.Combine(System.Web.HttpRuntime.AppDomainAppPath, "bin", "WebApi.xml"));
+                    c.ApiKey("Authorization")
+                        .Description("Introduce el Token JWT aquí.")
+                        .Name("Bearer")
+                        .In("header");
+                })
+                .EnableSwaggerUi(
+                c =>
+                    {
+                        c.EnableApiKeySupport("Authorization", "header");
+                    }
+                );
 
             // Web API routes
             config.MapHttpAttributeRoutes();
