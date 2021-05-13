@@ -12,6 +12,7 @@ namespace WebApi
     {
         public void Configuration(IAppBuilder app)
         {
+            ConfigureOAuth(app);
         }
     }
 }
