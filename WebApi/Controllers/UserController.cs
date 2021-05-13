@@ -13,14 +13,20 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
-    /// <summary>
-    /// Permite realizar consultas sobre el usuario.
-    /// </summary>
+
     [Authorize]
     public class UserController : ApiController
     {
         private IUserRepository _userRepository;
 
+        /// <summary>
+        /// Controlador para usuarios
+        /// </summary>
+        /// <remarks>
+        /// Acceso para todos los usuarios registrados.
+        /// </remarks>  
+        /// <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>               
+        /// <response code="403">Forbidden. Token JWT de acceso es correcto pero no tiene autorización para el recurso.</response> 
         public UserController()
         {
             _userRepository = new UserRepository();
@@ -56,7 +62,7 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="userName">Usuario a quien se tranfiere el balance.</param>
         /// <param name="amount">Cantidad a tranferir.</param>
-        /// <response code="201"></response>        
+        /// <response code="200"></response>        
         /// <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>               
         /// <response code="403">Forbidden. Token JWT de acceso es correcto pero no tiene autorización para el recurso.</response>               
         /// <response code="404">NotFound. No se ha encontrado el usuario actual.</response>
