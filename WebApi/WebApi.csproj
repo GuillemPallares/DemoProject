@@ -233,6 +233,10 @@
     <Compile Include="Migrations\202105131608123_Initial.Designer.cs">
       <DependentUpon>202105131608123_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105131825448_AddUserBalance.cs" />
+    <Compile Include="Migrations\202105131825448_AddUserBalance.Designer.cs">
+      <DependentUpon>202105131825448_AddUserBalance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Audience.cs" />
@@ -341,6 +345,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105131608123_Initial.resx">
       <DependentUpon>202105131608123_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105131825448_AddUserBalance.resx">
+      <DependentUpon>202105131825448_AddUserBalance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
