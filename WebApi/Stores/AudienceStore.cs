@@ -10,6 +10,9 @@ using WebApi.Models;
 
 namespace WebApi.Stores
 {
+    /// <summary>
+    /// Create an in memmory Audience store so we can have a Resourceserver in the API to create JWT Tokens.
+    /// </summary>
     public static class AudiencesStore
     {
         public static ConcurrentDictionary<string, Audience> AudiencesList = new ConcurrentDictionary<string, Audience>();
@@ -24,7 +27,7 @@ namespace WebApi.Stores
                                     Name = "ResourceServer.Api 1"
                                 });
         }
-
+        // We leaved commnet for the demo, no need of adding audiences.
         // public static Audience AddAudience(string name)
         // {
         //     var clientId = Guid.NewGuid().ToString("N");

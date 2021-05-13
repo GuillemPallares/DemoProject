@@ -13,13 +13,14 @@ namespace WebApi.Data
         private ApplicationDbContext _context;
         private ApplicationUserManager _userManager;
 
-
+       
         public UserRepository()
         {
             _context = HttpContext.Current.GetOwinContext().Get<ApplicationDbContext>();
             _userManager = HttpContext.Current.GetOwinContext().Get<ApplicationUserManager>();
         }
 
+        /// <inheritdoc/>
         public int AddBalance(string userName, int amount)
         {
             var user = FindUserByName(userName);
@@ -31,7 +32,7 @@ namespace WebApi.Data
             return user.Balance;
         }
 
-
+        /// <inheritdoc/>
         public async Task<ApplicationUser> AddUserAsync(string userName, string email, string password = "Prueba1234$", int initialBalance = 0)
         {
             if(userName == null || email == null) throw new ArgumentNullException("UserName and Email Can't be null.");
@@ -53,6 +54,7 @@ namespace WebApi.Data
             throw new Exception(result.Errors.ToString());
         }
 
+        ///<inheritdoc/>
         public void DeleteUser(string userName)
         {
             var user = FindUserByName(userName);
@@ -63,6 +65,7 @@ namespace WebApi.Data
 
         }
 
+        /// <inheritdoc/>
         public ApplicationUser EditUser(ApplicationUser user)
         {
             if(user == null) throw new ArgumentNullException("User cannot be null.");
@@ -76,17 +79,19 @@ namespace WebApi.Data
             return userToEdit.Obfuscate();
         }
 
+        /// <inheritdoc/>
         public List<ApplicationUser> GetAllUsers()
         {
             return _context.Users.ToList().ObfuscateList();
         }
 
+        /// <inheritdoc/>
         public ApplicationUser GetUser(string userName)
         {
             return FindUserByName(userName).Obfuscate();
         }
 
-
+        /// <inheritdoc/>
         public int RemoveBalance(string userName, int amount)
         {
             var user = FindUserByName(userName);
@@ -100,6 +105,7 @@ namespace WebApi.Data
             return user.Balance;
         }
 
+        /// <inheritdoc/>
         public void TransferToUser(string senderUserName, string recieverUserName, int amount)
         {
             var senderUser = _context.Users.FirstOrDefault(u => u.UserName == senderUserName);
