@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
@@ -15,11 +16,11 @@ namespace WebApi.Stores
 
         static AudiencesStore()
         {
-            AudiencesList.TryAdd("099153c2625149bc8ecb3e85e03f0022",
+            AudiencesList.TryAdd(ConfigurationManager.AppSettings["Audience"],
                                 new Audience
                                 {
-                                    ClientId = "099153c2625149bc8ecb3e85e03f0022",
-                                    Base64Secret = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw",
+                                    ClientId = ConfigurationManager.AppSettings["Audience"],
+                                    Base64Secret = ConfigurationManager.AppSettings["Secret"],
                                     Name = "ResourceServer.Api 1"
                                 });
         }

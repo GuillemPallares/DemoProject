@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -27,15 +28,15 @@ namespace WebApi
                 TokenEndpointPath = new PathString("/oauth2/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat("http://jwtauthzsrv.azurewebsites.net")
+                AccessTokenFormat = new CustomJwtFormat(ConfigurationManager.AppSettings["Issuer"])
             };
 
             // OAuth 2.0 Bearer Access Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
 
-            var issuer = "http://jwtauthzsrv.azurewebsites.net";
-            var audience = "099153c2625149bc8ecb3e85e03f0022";
-            var secret = TextEncodings.Base64Url.Decode("IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw");
+            var issuer = ConfigurationManager.AppSettings["Issuer"];
+            var audience = ConfigurationManager.AppSettings["Audience"];
+            var secret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["Secret"]);
 
             app.UseJwtBearerAuthentication(
                 new JwtBearerAuthenticationOptions
