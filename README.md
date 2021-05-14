@@ -22,7 +22,10 @@ La API esta documentada con swagger y esta protegida con JWT.
 Para conseguir el token se ha creado un formulario en la pagina de "home" que nos pedirá usuario y contraseña.
 Una vez conseguido el Token si nos dirigimos a swagger:
 > Pulsando el enlace de API - Swagger 
+> 
+> 
 > o
+> 
 > localhost:port/swagger
 
 Y en el campo API_Key escribimos:
