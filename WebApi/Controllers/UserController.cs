@@ -80,6 +80,10 @@ namespace WebApi.Controllers
                 _userRepository.TransferToUser(User.Identity.Name, userName, amount);
                 return Ok("Balance tranfer succes");
             }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
             catch (ArgumentOutOfRangeException)
             {
                 return BadRequest("User balance cannot become negative");

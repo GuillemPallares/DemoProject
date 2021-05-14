@@ -108,13 +108,13 @@ namespace WebApi.Data
         /// <inheritdoc/>
         public void TransferToUser(string senderUserName, string recieverUserName, int amount)
         {
-            var senderUser = _context.Users.FirstOrDefault(u => u.UserName == senderUserName);
+            var senderUser = FindUserByName(senderUserName);
             if ((senderUser.Balance - amount) < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            var recieverUser = _context.Users.FirstOrDefault(u => u.UserName == recieverUserName);
+            var recieverUser = FindUserByName(recieverUserName);
 
             senderUser.Balance -= amount;
             recieverUser.Balance += amount;
