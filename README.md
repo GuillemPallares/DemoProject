@@ -18,17 +18,20 @@ Al cual se le asigna un rol incial de Administradoe tambien
 
 ## Funcionamiento
 La API esta documentada con swagger y esta protegida con JWT.
+
 Para conseguir el token se ha creado un formulario en la pagina de "home" que nos pedirá usuario y contraseña.
 Una vez conseguido el Token si nos dirigimos a swagger:
+> Pulsando el enlace de API - Swagger 
+> o
 > localhost:port/swagger
 
 Y en el campo API_Key escribimos:
 > Bearer {JWT Token}
 >*no se aprecia pero hay un espacio entre Bearer y Token
 
-Y con esto tendremos dos tipos de acceso.
-`Admin`: Que nos dara accesso a toda la API.
-`User`: El cual solo tendrá acceso a el Controllador de Usuario.
+Tendremos dos tipos de acceso.
+Si nuestro usuario esta en Rol `Admin` -> nos dara accesso a toda la API.
+Si nuetro usuario no esta en ningún rol se considerará `User` -> solo tendrá acceso a el Controllador de Usuario.
 
 ## Fundamento
 Se puede observar que para esta demo (por un tema de facilitar la obtencion del JWT) la API actua de su propio "ResourceServer" Firmando y emitiendo sus propios JWT.
