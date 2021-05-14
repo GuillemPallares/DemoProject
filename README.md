@@ -12,6 +12,7 @@ Update-Database
 ```
 Esto creará una Base de Datos local que por defecto esta preparada para una conexión local de MSSQL, ademas se insertara un usario incial:
 > UserName: Admin;
+> 
 > Password: Prueba1234$;
 
 Al cual se le asigna un rol incial de Administradoe tambien
