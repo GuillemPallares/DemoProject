@@ -26,7 +26,7 @@ namespace WebApi
                 //For Dev enviroment only (on production should be AllowInsecureHttp = false)
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/oauth2/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(double.Parse(ConfigurationManager.AppSettings["Expires"])),
                 Provider = new CustomOAuthProvider(),
                 AccessTokenFormat = new CustomJwtFormat(ConfigurationManager.AppSettings["Issuer"])
             };
