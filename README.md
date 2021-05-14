@@ -1,7 +1,7 @@
 # DemoProject
-# Demo Porject API MVC
+# Demo Project API MVC
 
-Este proyecto es una demostracion de una API Web con autenticacion JWT basada en Roles.
+Este proyecto es una demostración de una API Web con autenticación JWT basada en Roles.
 
 ## Instalación
 
