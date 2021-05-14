@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebApi.Atrributtes;
 using WebApi.Data;
 using WebApi.Models;
 
 namespace WebApi.Controllers
 {
-
-    [Authorize(Roles ="Admin")]
+    [AuthorizeOrForbid(Roles ="Admin")]
     public class AdminController : ApiController
     {
         private IUserRepository _userRepository;
