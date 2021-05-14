@@ -51,7 +51,7 @@ namespace WebApi.Data
                 return user.Obfuscate();
             }
 
-            throw new Exception(result.Errors.ToString());
+            throw new Exception("Could not Create User");
         }
 
         ///<inheritdoc/>
