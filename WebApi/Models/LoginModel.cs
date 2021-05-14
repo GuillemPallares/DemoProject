@@ -25,5 +25,8 @@ namespace WebApi.Models
         [Display(Name = "Client")]
         public string Client_Id { get; set; }
 
+        [Display(Name = "JWT Token")]
+        public string Token { get; set; }
+
     }
 }
