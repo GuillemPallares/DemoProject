@@ -22,7 +22,14 @@ namespace WebApi
             config
                 .EnableSwagger(
                 c => {
-                    c.SingleApiVersion("v1", "A title for your API");
+                    c.SingleApiVersion("v1", "Demo Project API")
+                        .Description("Una API con Autenticacion JWT Basada en Roles.")
+                                .TermsOfService("Términos de servicio.")
+                                .Contact(x => x
+                                    .Name("Guillem Pallarés")
+                                    .Url("https://github.com/GuillemPallares")
+                                    .Email("guillempallares@outlook.es"));
+
                     c.IncludeXmlComments(Path.Combine(System.Web.HttpRuntime.AppDomainAppPath, "bin", "WebApi.xml"));
                     c.ApiKey("Authorization")
                         .Description("Introduce el Token JWT aquí.")
