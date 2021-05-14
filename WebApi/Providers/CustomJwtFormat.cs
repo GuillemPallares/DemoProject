@@ -16,11 +16,20 @@ namespace WebApi.Models
 
         private readonly string _issuer = string.Empty;
 
+        /// <summary>
+        /// Initializes with a custom Issuer otherwise emty
+        /// </summary>
+        /// <param name="issuer">The Issuer</param>
         public CustomJwtFormat(string issuer)
         {
             _issuer = issuer;
         }
 
+        /// <summary>
+        /// Creates a JWT from an Authentication Ticket.
+        /// </summary>
+        /// <param name="data">Authentiction Ticket.</param>
+        /// <returns></returns>
         public string Protect(AuthenticationTicket data)
         {
             if (data == null)
@@ -52,6 +61,11 @@ namespace WebApi.Models
             return jwt;
         }
 
+        /// <summary>
+        /// Not Implemented for this project
+        /// </summary>
+        /// <param name="protectedText"></param>
+        /// <returns>NotImplementedException</returns>
         public AuthenticationTicket Unprotect(string protectedText)
         {
             throw new NotImplementedException();

@@ -50,6 +50,11 @@ namespace WebApi.Models
             }
         }
 
+        /// <summary>
+        /// Validates Client
+        /// </summary>
+        /// <param name="context">Client Authenticatiocn Context</param>
+        /// <returns></returns>
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             string clientId = string.Empty;
@@ -79,20 +84,28 @@ namespace WebApi.Models
             return Task.FromResult<object>(null);
         }
 
+        /// <summary>
+        /// Grants Resource Owner Credentials.
+        /// </summary>
+        /// <param name="context">GrantResourceOwnerCredentialsContext</param>
+        /// <returns></returns>
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            //Dummy check here, you need to do your DB checks against memebrship system http://bit.ly/SPAAuthCode
-
+            
+            // Check Users exists and is valid to grant credentials
             var result = await SignInManager.PasswordSignInAsync(context.UserName, context.Password, false, false);
+
+            // If signing failure return failure message.
             if (result == SignInStatus.Failure)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect");
                 return;
                 //return Task.FromResult<object>(null);
             }
+            // If Signing successfull then create and authentication ticket.
             if(result == SignInStatus.Success)
             {
                 var user = await UserManager.FindByNameAsync(context.UserName);
